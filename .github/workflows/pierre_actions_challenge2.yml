@@ -10,6 +10,7 @@ on:
     - main
     paths:
     - 'pierre/challenge2/**'
+  workflow_dispatch:
 
 env:
   AZURE_FUNCTIONAPP_NAME: ohfunctionappfr    # set this to your application's name
