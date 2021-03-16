@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "GetRatings/{userId}",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "ratings",
+      "databaseName": "BFYOC",
+      "collectionName": "ratings",
+      "connectionStringSetting": "cosmosDb_connectionstring",
+      "sqlQuery": "SELECT * from c where c.userId = {userId}",
+      "direction": "in"
+    }
+  ]
+}

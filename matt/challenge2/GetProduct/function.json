@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "GetProductId/{productId}",
+      "route": "GetProduct/{productId}",
       "methods": [
         "get"
       ]

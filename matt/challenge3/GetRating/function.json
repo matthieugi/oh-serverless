@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "GetRating/{ratingId}",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "rating",
+      "databaseName": "BFYOC",
+      "collectionName": "ratings",
+      "connectionStringSetting": "cosmosDb_connectionstring",
+      "direction": "in",
+      "Id": "{ratingId}"
+    }
+  ]
+}
