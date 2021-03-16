@@ -1,0 +1,32 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.140.1/containers/typescript-node
+{
+	"name": "Dev Velocity Capgemini",
+
+	"remoteUser": "node",
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+	},
+
+	"forwardPorts": [3000, 5501, 7071],
+	"dockerComposeFile": "docker-compose.yml",
+	"workspaceFolder": "/workspace",
+	"service": "web",
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"ms-vscode.vscode-typescript-tslint-plugin",
+		"msjsdiag.debugger-for-edge",
+		"ms-azuretools.vscode-docker",
+		"ms-azuretools.vscode-azurefunctions",
+		"ms-azuretools.vscode-cosmosdb",
+		"ms-vscode.azurecli",
+		"ritwickdey.liveserver",
+		"redhat.vscode-yaml"
+	],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "chown -R node:node . && cd api && npm install"
+}
