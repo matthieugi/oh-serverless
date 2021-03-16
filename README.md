@@ -1,3 +1,7 @@
+# Challenges guide
+get your challenges guide [here](https://serverlessohfrguide.z28.web.core.windows.net/)
+
+
 # Git basics
 
 Create a working branche for yourself
