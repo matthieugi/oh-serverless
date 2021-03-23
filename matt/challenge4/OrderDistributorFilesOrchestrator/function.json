@@ -4,6 +4,15 @@
       "name": "context",
       "type": "orchestrationTrigger",
       "direction": "in"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "orders",
+      "databaseName": "BFYOC",
+      "collectionName": "orders",
+      "createIfNotExists": true,
+      "connectionStringSetting": "cosmosDb_connectionstring",
+      "direction": "out"
     }
   ]
 }

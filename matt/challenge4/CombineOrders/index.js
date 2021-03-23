@@ -9,10 +9,15 @@
  *   function app in Kudu
  */
 
-module.exports = async function (context) {
-    const client = df.getClient(context);
-    const entityId = new df.EntityId("Counter", "myCounter");
-    await client.signalEntity(entityId, "add", 1);
+const axios = require('axios');
 
-    return (await client.readEntityState().entityId).entityState;
+module.exports = async function (context) {
+    const response = await axios.post('https://serverlessohmanagementapi.trafficmanager.net/api/order/combineOrderContent',
+        collectedFiles,
+        {
+            Headers: 'Content-Type: application/json'
+        }
+    );
+
+    return response.data;
 };

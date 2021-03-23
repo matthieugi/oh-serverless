@@ -19,25 +19,17 @@ module.exports = df.orchestrator(function* (context) {
     const batchOrderType = blobName.split(/(\w+)-(\w+).(?:\w+)$/g)[2];
 
     //Set Durable Functions prerequisites
-    //const client = df.getClient(context);
-    const entityId = new df.EntityId("ProcessDistributorFilesAndCombine", batchId);
+    const entityId = new df.EntityId("ProcessDistributorFilesEntity", batchId);
 
     //Signal Enitty 
     const batchFiles = yield context.df.callEntity(entityId, "addFile", { blobName: blobName, batchOrderType: batchOrderType});
-    //const entityState = await client.readEntityState(entityId);
 
     context.log(batchFiles);
 
-    
+    if(batchFiles.completed) {
+        context.log('All files Collected');
+        context.bindingData.orders = yield context.df.callActivity('CombineOrders', batchFiles);
 
-    // if(collectedFiles.completed) {
-    //     context.log('All files Collected');
-    //     // const mergedData = await axios.post('https://serverlessohmanagementapi.trafficmanager.net/api/order/combineOrderContent', 
-    //     //     collectedFiles,
-    //     //     {
-    //     //         Headers: 'Content-Type: application/json'
-    //     //     }
-    //     // );
-        
-        // }
+        context.log(context.bindingData.orders);
+    }
 });
