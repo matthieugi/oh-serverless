@@ -1,19 +1,11 @@
 {
   "bindings": [
     {
-      "authLevel": "anonymous",
-      "name": "req",
-      "type": "httpTrigger",
+      "name": "myBlob",
+      "type": "blobTrigger",
       "direction": "in",
-      "route": "end",
-      "methods": [
-        "post"
-      ]
-    },
-    {
-      "name": "$return",
-      "type": "http",
-      "direction": "out"
+      "path": "orders/{name}",
+      "connection": "MyStorageAccountAppSetting"
     },
     {
       "name": "starter",
