@@ -17,7 +17,7 @@ module.exports = df.orchestrator(function* (context) {
     //Set Durable Functions prerequisites
     const entityId = new df.EntityId("ProcessDistributorFilesEntity", batchId);
 
-    //Call Enitty to add file to entity
+    //Call Entity to add file to entity
     const collectedFiles = yield context.df.callEntity(entityId, "addFile", { blobName: blobName, batchOrderType: batchOrderType});
 
     context.log(collectedFiles);
