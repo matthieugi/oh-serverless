@@ -1,0 +1,13 @@
+{
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "eventHubMessages",
+      "direction": "in",
+      "eventHubName": "salesevents",
+      "connection": "eventhubnamespace_connection",
+      "cardinality": "many",
+      "consumerGroup": "$Default"
+    }
+  ]
+}
