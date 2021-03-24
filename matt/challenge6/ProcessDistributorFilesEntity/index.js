@@ -20,6 +20,7 @@ module.exports = df.entity(function(context) {
             break;
         case 'ProductInformation':
             collectedFiles = {
+                ...collectedFiles,
                 productInformationCSVUrl: blobName
             }
     }
