@@ -1,7 +1,7 @@
 ﻿const df = require("durable-functions");
 
 module.exports = df.entity(function(context) {
-    let collectedFiles = context.df.getState(() => { completed: false });
+    let collectedFiles = context.df.getState(() => {});
     const { blobName, batchOrderType } = context.df.getInput();
 
     //Ajout des différents fichiers dans l'entité
