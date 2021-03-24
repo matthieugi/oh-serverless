@@ -28,7 +28,7 @@ module.exports = df.orchestrator(function* (context) {
     if(error === undefined) {
         context.log('All files Collected');
         //Start Combine Activity to merge files
-        context.bindings.orders = yield context.df.callActivity('CombineOrders', collectedFiles);
+        context.bindings.orders = yield context.df.callActivity('CombineOrdersActivity', collectedFiles);
     
         context.log(context.bindings.orders);
     }
