@@ -24,9 +24,6 @@ module.exports = df.entity(function(context) {
             }
     }
 
-    context.log('Collected Files : ');
-    context.log(collectedFiles);
-
     context.df.setState(collectedFiles);
     context.df.return(collectedFiles);
 });

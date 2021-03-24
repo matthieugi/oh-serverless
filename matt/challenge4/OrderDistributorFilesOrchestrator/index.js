@@ -26,11 +26,8 @@ module.exports = df.orchestrator(function* (context) {
     const { error } = distributorFilesSchema.validate(collectedFiles);
 
     if(error === undefined) {
-        context.log('All files Collected');
-        //Start Combine Activity to merge files
+        //Start Combine Activity to merge files et set data to database
         context.bindings.orders = yield context.df.callActivity('CombineOrdersActivity', collectedFiles);
-    
-        context.log(context.bindings.orders);
     }
 
 });
