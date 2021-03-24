@@ -1,15 +1,11 @@
-﻿/*
- * This function is not intended to be invoked directly. Instead it will be
- * triggered by an HTTP starter function.
- * 
- * Before running this sample, please:
- * - create a Durable activity function (default name is "Hello")
- * - create a Durable HTTP starter function
- * - run 'npm install durable-functions' from the wwwroot folder of your 
- *    function app in Kudu
- */
+﻿const df = require("durable-functions");
+const joi = require('joi');
 
-const df = require("durable-functions");
+distributorFilesSchema = joi.object({
+    orderHeaderDetailsCSVUrl: joi.string().uri().required(),
+    orderLineItemsCSVUrl: joi.string().uri().required(),
+    productInformationCSVUrl: joi.string().uri().required()
+})
 
 module.exports = df.orchestrator(function* (context) {
 
@@ -22,14 +18,19 @@ module.exports = df.orchestrator(function* (context) {
     const entityId = new df.EntityId("ProcessDistributorFilesEntity", batchId);
 
     //Signal Enitty 
-    const batchFiles = yield context.df.callEntity(entityId, "addFile", { blobName: blobName, batchOrderType: batchOrderType});
+    const collectedFiles = yield context.df.callEntity(entityId, "addFile", { blobName: blobName, batchOrderType: batchOrderType});
 
-    context.log(batchFiles);
+    context.log(collectedFiles);
 
-    if(batchFiles.completed) {
+    //Si le schema est valide, alors l'ensemble des fichiers ont été recus
+    const { error } = distributorFilesSchema.validate(collectedFiles);
+
+    if(error === undefined) {
         context.log('All files Collected');
-        context.bindingData.orders = yield context.df.callActivity('CombineOrders', batchFiles);
-
-        context.log(context.bindingData.orders);
+        //Start Combine Activity to merge files
+        context.bindings.orders = yield context.df.callActivity('CombineOrders', collectedFiles);
+    
+        context.log(context.bindings.orders);
     }
+
 });

@@ -13,7 +13,7 @@ const axios = require('axios');
 
 module.exports = async function (context) {
     const response = await axios.post('https://serverlessohmanagementapi.trafficmanager.net/api/order/combineOrderContent',
-        collectedFiles,
+        context.bindings.batchFiles,
         {
             Headers: 'Content-Type: application/json'
         }

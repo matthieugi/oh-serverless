@@ -1,11 +1,4 @@
 ﻿const df = require("durable-functions");
-const joi = require('joi');
-
-distributorFilesSchema = joi.object({
-    orderHeaderDetailsCSVUrl: joi.string().uri().required(),
-    orderLineItemsCSVUrl: joi.string().uri().required(),
-    productInformationCSVUrl: joi.string().uri().required()
-})
 
 module.exports = df.entity(function(context) {
     let collectedFiles = context.df.getState(() => { completed: false });
@@ -33,13 +26,6 @@ module.exports = df.entity(function(context) {
 
     context.log('Collected Files : ');
     context.log(collectedFiles);
-
-    //Si le schema est valide, alors l'ensemble des fichiers ont été recus
-    const { error } = distributorFilesSchema.validate(collectedFiles);
-
-    if(error === undefined) {
-        collectedFiles = { ...collectedFiles, completed: true };
-    }
 
     context.df.setState(collectedFiles);
     context.df.return(collectedFiles);

@@ -1,7 +1,7 @@
 {
   "bindings": [
     {
-      "name": "name",
+      "name": "batchFiles",
       "type": "activityTrigger",
       "direction": "in"
     }

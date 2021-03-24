@@ -5,7 +5,7 @@
       "type": "blobTrigger",
       "direction": "in",
       "path": "orders/{name}",
-      "connection": "MyStorageAccountAppSetting"
+      "connection": "AzureWebJobsStorage"
     },
     {
       "name": "starter",
