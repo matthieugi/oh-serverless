@@ -4,9 +4,16 @@
       "name": "mySbMsg",
       "type": "serviceBusTrigger",
       "direction": "in",
-      "topicName": "mytopic",
-      "subscriptionName": "mysubscription",
-      "connection": ""
+      "topicName": "posevents",
+      "subscriptionName": "receipts-high-value",
+      "connection": "Endpoint=sb://oh-serverless-possalesfiltering.servicebus.windows.net/;SharedAccessKeyName=Read;SharedAccessKey=A2SFAhH9+3kpSpkTWi6ldi1MZu7gGvEG6CCgWUTTx6Y=;EntityPath=posevents"
+    },
+    {
+      "name": "outputBlob",
+      "type": "blob",
+      "path": "receipts-high-value/{serviceBusTrigger}",
+      "connection": "MyStorageConnectionAppSetting",
+      "direction": "out"
     }
   ]
 }
