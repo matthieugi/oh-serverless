@@ -13,7 +13,7 @@ const client = new CosmosClient(config);
 const container = client.database(config.databaseId).container(config.containerId);
 
 
-const serviceBusClient = new ServiceBusClient(process.env.servicebus_connectionString);
+const serviceBusClient = new ServiceBusClient(process.env.servicebus_connectionString_send);
 const sender = serviceBusClient.createSender(process.env.servicebus_topic);
 
 module.exports = async function (context, eventHubMessages) {  

@@ -5,13 +5,13 @@
       "type": "serviceBusTrigger",
       "direction": "in",
       "topicName": "posevents",
-      "subscriptionName": "receipts-high-value",
+      "subscriptionName": "receipts",
       "connection": "servicebus_connectionString_read"
     },
     {
       "name": "outputBlob",
       "type": "blob",
-      "path": "receipts-high-value/{MessageId}",
+      "path": "receipts/{MessageId}",
       "connection": "storage_receipt_connectionString",
       "direction": "out"
     }
