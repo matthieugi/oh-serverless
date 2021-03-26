@@ -1,3 +1,12 @@
+const axios = require('axios');
+
 module.exports = async function(context, mySbMsg) {
-    context.log('JavaScript ServiceBus topic trigger function processed message', mySbMsg);
+       const pdf = await axios.get(mySbMsg.receiptUrl);
+       
+       context.bindings.outputBlob = {
+            Store: mySbMsg.storeLocation,
+            SalesNumber: mySbMsg.salesNumber,
+            TotalCost: mySbMsg.totalCost,
+            Items: mySbMsg.totalItems 
+       }
 };
