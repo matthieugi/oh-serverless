@@ -1,0 +1,21 @@
+{
+  "bindings": [
+    {
+      "type": "eventHub",
+      "name": "eventHubMessages",
+      "direction": "out",
+      "eventHubName": "orders",
+      "connection": "eventhubnamespace_connection"
+    },
+    {
+      "type": "cosmosDBTrigger",
+      "name": "documents",
+      "direction": "in",
+      "leaseCollectionName": "leaseOrders",
+      "createLeaseCollectionIfNotExists": "true",
+      "connectionStringSetting": "cosmosDb_connectionstring",
+      "databaseName": "BFYOC",
+      "collectionName": "orders"
+    }
+  ]
+}
