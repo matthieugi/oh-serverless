@@ -1,6 +1,4 @@
 SELECT
-    headers.locationName, headers.dateTime, headers.totalTax
-FROM
-    [orders]
-TIMESTAMP BY headers.dateTime
-GROUP BY  TumblingWindow(day, 2)
+	detailsRecord.ArrayValue.productId
+FROM orders
+CROSS APPLY GetArrayElements(details) AS detailsRecord

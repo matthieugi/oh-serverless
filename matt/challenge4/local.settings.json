@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=ohserverlessbatchprocess;AccountKey=KW0tOHuMJA2JW72VY51tsVaCyB29P0LFHgHMDNG/8Ck2SS2hteQGrwTt0U98EnfFFwrFzZ+v2rOhIPHnmrA2Iw==;EndpointSuffix=core.windows.net",
+    "MyStorageAccountAppSetting": "DefaultEndpointsProtocol=https;AccountName=ohserverlessbatchprocess;AccountKey=KW0tOHuMJA2JW72VY51tsVaCyB29P0LFHgHMDNG/8Ck2SS2hteQGrwTt0U98EnfFFwrFzZ+v2rOhIPHnmrA2Iw==;EndpointSuffix=core.windows.net",
+    "cosmosDb_connectionstring": ""
+  }
+}
