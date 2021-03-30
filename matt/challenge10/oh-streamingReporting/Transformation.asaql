@@ -1,0 +1,6 @@
+SELECT
+    headers.locationName, headers.dateTime, headers.totalTax
+FROM
+    [orders]
+TIMESTAMP BY headers.dateTime
+GROUP BY  TumblingWindow(day, 2)

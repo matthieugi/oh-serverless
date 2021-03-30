@@ -1,0 +1,21 @@
+{
+    "Name": "ratings",
+    "Type": "Data Stream",
+    "DataSourceType": "Event Hub",
+    "EventHubProperties": {
+        "ServiceBusNamespace": "oh-changefeed",
+        "EventHubName": "ratings",
+        "SharedAccessPolicyName": "ratings_read",
+        "SharedAccessPolicyKey": null,
+        "ConsumerGroupName": "",
+        "AuthenticationMode": "ConnectionString"
+    },
+    "DataSourceCredentialDomain": "ad6a2cbd-b2b1-49b6-9332-5d3cd1f50625.StreamAnalystics",
+    "Serialization": {
+        "Type": "Json",
+        "Encoding": "UTF8"
+    },
+    "PartitionKey": "",
+    "CompressionType": "None",
+    "ScriptType": "Input"
+}

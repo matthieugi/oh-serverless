@@ -1,0 +1,12 @@
+{
+    "Name": "pbi",
+    "DataSourceType": "Power BI",
+    "PowerBIProperties": {
+        "GroupName": "My workspace",
+        "GroupId": "",
+        "Dataset": "oh-bfyoc",
+        "Table": "reporting",
+        "AuthenticationMode": "UserToken"
+    },
+    "ScriptType": "Output"
+}

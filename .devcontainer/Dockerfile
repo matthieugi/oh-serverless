@@ -11,6 +11,14 @@ RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key a
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
+# Install Dotnet Core (Azure Stream Analytics)
+RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+    && sudo dpkg -i packages-microsoft-prod.deb \
+    && sudo apt-get update \
+    && sudo apt-get install -y apt-transport-https && \
+    && sudo apt-get update && \
+    && sudo apt-get install -y dotnet-sdk-3.1
+
 # Update args in docker-compose.yaml to set the UID/GID of the "node" user.
 USER node
 

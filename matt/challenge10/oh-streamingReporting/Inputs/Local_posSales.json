@@ -1,0 +1,7 @@
+{
+    "InputAlias": "posSales",
+    "Type": "Data Stream",
+    "Format": "Json",
+    "FilePath": "../samples/possales.json",
+    "ScriptType": "InputMock"
+}

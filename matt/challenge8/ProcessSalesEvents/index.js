@@ -8,8 +8,8 @@ module.exports = async function (context, eventHubMessages) {
         //filter array on items with receiptUrl
         //map to ServiceBusObject
         const serviceBusMessagesWithReceipt = eventHubMessages.filter(message => message.header.receiptUrl !== null)
-                                    .map((message) => (
-                                    { 
+                                    .map((message) => 
+                                    ({ 
                                         body: {
                                             totalItems: message.details.length,
                                             totalCost: parseFloat(message.header.totalCost),
@@ -21,7 +21,8 @@ module.exports = async function (context, eventHubMessages) {
                                         applicationProperties: {
                                             totalCost: parseFloat(message.header.totalCost)
                                         }
-                                    }));
+                                    })
+                                );
         
         //send to service bus queue 
         context.bindings.salesTopic = serviceBusMessagesWithReceipt;

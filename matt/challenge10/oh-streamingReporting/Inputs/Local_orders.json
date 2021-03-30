@@ -1,0 +1,7 @@
+{
+    "InputAlias": "orders",
+    "Type": "Data Stream",
+    "Format": "Json",
+    "FilePath": "../samples/orders.json",
+    "ScriptType": "InputMock"
+}

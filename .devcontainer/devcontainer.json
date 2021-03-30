@@ -24,7 +24,8 @@
 		"ms-azuretools.vscode-cosmosdb",
 		"ms-vscode.azurecli",
 		"ritwickdey.liveserver",
-		"redhat.vscode-yaml"
+		"redhat.vscode-yaml",
+		"ms-bigdatatools.vscode-asa"
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.

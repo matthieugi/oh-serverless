@@ -1,0 +1,38 @@
+{
+    "name": "oh-streamingReporting",
+    "startFile": "Transformation.asaql",
+    "configurations": [
+        {
+            "filePath": "JobConfig.json",
+            "subType": "JobConfig"
+        },
+        {
+            "filePath": "Inputs/orders.json",
+            "subType": "Input"
+        },
+        {
+            "filePath": "Inputs/posSales.json",
+            "subType": "Input"
+        },
+        {
+            "filePath": "Inputs/ratings.json",
+            "subType": "Input"
+        },
+        {
+            "filePath": "Outputs/pbi.json",
+            "subType": "Output"
+        },
+        {
+            "filePath": "Inputs/Local_orders.json",
+            "subType": "InputMock"
+        },
+        {
+            "filePath": "Inputs/Local_posSales.json",
+            "subType": "InputMock"
+        },
+        {
+            "filePath": "Inputs/Local_ratings.json",
+            "subType": "InputMock"
+        }
+    ]
+}

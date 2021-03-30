@@ -1,0 +1,7 @@
+{
+    "InputAlias": "ratings",
+    "Type": "Data Stream",
+    "Format": "Json",
+    "FilePath": "../samples/ratings.json",
+    "ScriptType": "InputMock"
+}
