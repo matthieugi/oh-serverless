@@ -19,5 +19,8 @@ module.exports = async function (context) {
         }
     );
 
-    return response.data;
+    let forematedAsnwer = { ...response.data, header: response.data.headers };
+    delete forematedAsnwer.headers;
+
+    return forematedAsnwer;
 };

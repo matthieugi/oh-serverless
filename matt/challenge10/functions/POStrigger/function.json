@@ -4,7 +4,7 @@
       "type": "eventHub",
       "name": "eventHubMessages",
       "direction": "out",
-      "eventHubName": "POSsales",
+      "eventHubName": "orders",
       "connection": "eventhubnamespace_connection"
     },
     {
