@@ -1,24 +1,59 @@
+-- WITH ordersSelect AS (
+-- 	SELECT
+-- 		System.Timestamp() AS Date,
+-- 		detailsRecord.ArrayValue.productName AS "Product Name",
+-- 		SUM(detailsRecord.ArrayValue.totalCost) AS "Total Sales",
+-- 		detailsRecord.ArrayValue.productId
+
+-- 	FROM orders o
+-- 	TIMESTAMP BY o.header.dateTime
+-- 	CROSS APPLY GetArrayElements(details) AS detailsRecord
+-- 	GROUP BY  detailsRecord.ArrayValue.productName, TumblingWindow(minute, 5)
+-- ),
+
+-- ratingsAverage AS (
+-- 	SELECT 
+-- 		AVG(rating), 
+-- 		productId AS "rating" 
+-- 	FROM ratings r
+-- 	TIMESTAMP BY r.Timestamp
+-- 	GROUP BY TumblingWindow(minute, 5)
+-- )
+
+-- SELECT *
+-- FROM ordersSelect o JOIN ratings r on 
+
 WITH ordersSelect AS (
-SELECT
-	System.Timestamp() AS Date,
-	detailsRecord.ArrayValue.productName AS "Product Name",
-	SUM(detailsRecord.ArrayValue.totalCost) AS "Total Sales"
-
-FROM orders o
-TIMESTAMP BY o.headers.dateTime
-CROSS APPLY GetArrayElements(details) AS detailsRecord
-GROUP BY  detailsRecord.ArrayValue.productName, TumblingWindow(minute, 5))
-
-AND posSelect AS (
 	SELECT
 		System.Timestamp() AS Date,
-		detailsRecord.ArrayValue.productName AS "Product Name",
-		SUM(detailsRecord.ArrayValue.totalCost) AS "Total Sales"
-	
-	FROM posSales p
-	TIMESTAMP BY CAST(p.header.dateTime AS dateTime)
+		detailsRecord.ArrayValue.productName,
+		detailsRecord.ArrayValue.productId,
+		SUM(detailsRecord.ArrayValue.totalCost) AS totalCost
+	FROM orders o
+	TIMESTAMP BY o.header.dateTime
 	CROSS APPLY GetArrayElements(details) AS detailsRecord
-	GROUP BY  detailsRecord.ArrayValue.productName, TumblingWindow(minute, 5))
+	GROUP BY  
+		detailsRecord.ArrayValue.productName, 
+		detailsRecord.ArrayValue.productId, 
+		TumblingWindow(minute, 5)
+)
 
-SELECT *
-FROM ordersSelect
+
+SELECT 
+	o.productName, 
+	o.productId, 
+	SUM(o.totalCost) as totalCost,
+	AVG(r.rating) as averageRating
+FROM 
+	ordersSelect o
+JOIN
+	ratings r 
+	TIMESTAMP BY 
+		TRY_CAST(r._ts AS DATETIME)
+ON
+	DATEDIFF(minute, r, o)
+	BETWEEN 0 AND 5
+GROUP BY
+	o.productId,
+	o.productName,
+	TumblingWindow(minute, 5)
